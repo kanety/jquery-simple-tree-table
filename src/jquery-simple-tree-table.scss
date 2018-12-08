@@ -1,0 +1,17 @@
+table.simple-tree-table {
+  span.tree-icon {
+    display: inline-block;
+    width: 12px;
+    margin: 5px;
+    padding: 0 5px;
+    background-color: #eee;
+    text-align: center;
+    cursor: pointer;
+  }
+  span.tree-icon.tree-opened:after {
+    content: '-'
+  }
+  span.tree-icon.tree-closed:after {
+    content: '+'
+  }
+}

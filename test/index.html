@@ -1,0 +1,109 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../dist/jquery-simple-tree-table.js"></script>
+</head>
+<body>
+  <h1>Basic Table</h1>
+  <button type="button" id="expander">expand</button>
+  <button type="button" id="collapser">collapse</button>
+  <table id="basic" border="1">
+    <tr data-node-id="1">
+      <td>1</td>
+      <td>text of 1</td>
+    </tr>
+    <tr data-node-id="1.1" data-node-pid="1">
+      <td>1.1</td>
+      <td>text of 1.1</td>
+    </tr>
+    <tr data-node-id="1.1.1" data-node-pid="1.1">
+      <td>1.1.1</td>
+      <td>text of 1.1.1</td>
+    </tr>
+    <tr data-node-id="1.1.2" data-node-pid="1.1">
+      <td>1.1.2</td>
+      <td>text of 1.1.2</td>
+    </tr>
+    <tr data-node-id="1.2" data-node-pid="1">
+      <td>1.2</td>
+      <td>text of 1.2</td>
+    </tr>
+    <tr data-node-id="1.2.1" data-node-pid="1.2">
+      <td>1.2.1</td>
+      <td>text of 1.2.1</td>
+    </tr>
+    <tr data-node-id="1.2.2" data-node-pid="1.2">
+      <td>1.2.2</td>
+      <td>text of 1.2.2</td>
+    </tr>
+    <tr data-node-id="2">
+      <td>2</td>
+      <td>text of 2</td>
+    </tr>
+    <tr data-node-id="2.1" data-node-pid="2">
+      <td>2.1</td>
+      <td>text of 2.1</td>
+    </tr>
+    <tr data-node-id="2.2" data-node-pid="2">
+      <td>2.2</td>
+      <td>text of 2.2</td>
+    </tr>
+  </table>
+  <script>
+  $('#basic').simpleTreeTable({
+    expander: $('#expander'),
+    collapser: $('#collapser'),
+    storeState: true
+  });
+  </script>
+
+  <h1>Collapsed table</h1>
+  <table id="collapsed" border="1">
+    <tr data-node-id="1">
+      <td>1</td>
+      <td>text of 1</td>
+    </tr>
+    <tr data-node-id="1.1" data-node-pid="1">
+      <td>1.1</td>
+      <td>text of 1.1</td>
+    </tr>
+    <tr data-node-id="1.1.1" data-node-pid="1.1">
+      <td>1.1</td>
+      <td>text of 1.1.1</td>
+    </tr>
+  </table>
+  <script>
+  $('#collapsed').simpleTreeTable({
+    collapsed: true
+  });
+  </script>
+
+  <h1>Callback</h1>
+  <table id="callback" border="1">
+    <tr data-node-id="1">
+      <td>1</td>
+      <td>text of 1</td>
+    </tr>
+    <tr data-node-id="1.1" data-node-pid="1">
+      <td>1.1</td>
+      <td>text of 1.1</td>
+    </tr>
+    <tr data-node-id="1.1.1" data-node-pid="1.1">
+      <td>1.1</td>
+      <td>text of 1.1.1</td>
+    </tr>
+  </table>
+  <p id="message"> </p>
+  <script>
+  $('#callback').simpleTreeTable({
+    onOpen: function($node) {
+      $('#message').append("opened " + $node.data('node-id') + " ");
+    },
+    onClose: function($node) {
+      $('#message').append("closed " + $node.data('node-id') + " ");
+    }
+  });
+  </script>
+</body>
+</html>
