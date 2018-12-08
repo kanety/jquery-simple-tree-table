@@ -10,7 +10,7 @@ A jquery plugin that attaches tree-like behaviour to table.
 
 Install from npm:
 
-    $ npm install @kanety/jquery-simple-tree-table- --save
+    $ npm install @kanety/jquery-simple-tree-table --save
 
 ## Usage
 
