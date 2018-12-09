@@ -1,17 +1,38 @@
-var webpack = require("webpack");
+const webpack = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = {
-  entry: ["./src/jquery-simple-tree-table.js"],
+  entry: {
+    "jquery-simple-tree-table": "./src/jquery-simple-tree-table.js"
+  },
 
   output: {
     path: __dirname + "/dist",
-    filename: "jquery-simple-tree-table.js"
+    filename: "[name].js"
   },
 
   resolve: {
     modules: [
       __dirname + "/src",
       "node_modules"
+    ]
+  },
+
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css'
+    })
+  ],
+
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true
+      }),
+      new OptimizeCSSAssetsPlugin({})
     ]
   },
 
@@ -28,7 +49,11 @@ module.exports = {
         }
       }, {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "sass-loader"
+        ],
       }
     ]
   },

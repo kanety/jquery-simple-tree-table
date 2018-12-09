@@ -1,0 +1,1 @@
+table.simple-tree-table span.tree-icon{display:inline-block;width:12px;margin:5px;padding:0 5px}table.simple-tree-table span.tree-closed,table.simple-tree-table span.tree-opened{background-color:#eee;text-align:center;cursor:pointer}table.simple-tree-table span.tree-icon.tree-opened:after{content:"-"}table.simple-tree-table span.tree-icon.tree-closed:after{content:"+"}
