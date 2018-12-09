@@ -4,6 +4,9 @@ table.simple-tree-table {
     width: 12px;
     margin: 5px;
     padding: 0 5px;
+  }
+  span.tree-opened,
+  span.tree-closed, {
     background-color: #eee;
     text-align: center;
     cursor: pointer;
