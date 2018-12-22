@@ -15,7 +15,7 @@ const DEFAULTS = {
 
 export default class SimpleTreeTable {
   constructor(element, options = {}) {
-    this.options = Object.assign({}, DEFAULTS, options);
+    this.options = $.extend({}, DEFAULTS, options);
 
     this.$tree = $(element);
     this.$expander = $(this.options.expander);
@@ -256,6 +256,6 @@ export default class SimpleTreeTable {
   }
 
   static setDefaults(options) {
-    Object.assign(DEFAULTS, options);
+    $.extend(DEFAULTS, options);
   }
 }
