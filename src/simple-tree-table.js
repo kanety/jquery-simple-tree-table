@@ -1,6 +1,7 @@
 'use strict';
 
-const NAMESPACE = 'simple-tree-table';
+import { NAMESPACE } from './consts';
+
 const DEFAULTS = {
   expander: null,
   collapser: null,

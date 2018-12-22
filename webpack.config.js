@@ -14,13 +14,6 @@ module.exports = {
     publicPath: "/dist"
   },
 
-  resolve: {
-    modules: [
-      __dirname + "/src",
-      "node_modules"
-    ]
-  },
-
   plugins: [
     new MiniCssExtractPlugin({
       filename: "[name].css"
@@ -69,4 +62,3 @@ module.exports = {
     disableHostCheck: true
   }
 };
-

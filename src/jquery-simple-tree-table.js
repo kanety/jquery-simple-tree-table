@@ -1,9 +1,8 @@
 'use strict';
 
-import 'jquery-simple-tree-table.scss';
-import SimpleTreeTable from 'simple-tree-table';
-
-const NAMESPACE = 'simple-tree-table';
+import './jquery-simple-tree-table.scss';
+import SimpleTreeTable from './simple-tree-table';
+import { NAMESPACE } from './consts';
 
 $.fn.simpleTreeTable = function(options) {
   return this.each((i, elem) => {
