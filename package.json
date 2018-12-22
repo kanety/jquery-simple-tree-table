@@ -17,6 +17,7 @@
   "main": "dist/jquery-simple-tree-table.js",
   "style": "dist/jquery-simple-tree-table.css",
   "scripts": {
+    "start": "webpack-dev-server --mode development",
     "watch": "webpack --mode development --watch",
     "build": "webpack --mode production",
     "test": "karma start"
@@ -32,6 +33,7 @@
     "karma": "^3.1.1",
     "karma-chrome-launcher": "^2.2.0",
     "karma-coverage": "^1.1.2",
+    "karma-edge-launcher": "^0.4.2",
     "karma-firefox-launcher": "^1.1.0",
     "karma-html2js-preprocessor": "^1.1.0",
     "karma-ie-launcher": "^1.0.0",
@@ -42,6 +44,7 @@
     "sass-loader": "^7.1.0",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.26.1",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.11"
   }
 }

@@ -10,7 +10,8 @@ module.exports = {
 
   output: {
     path: __dirname + "/dist",
-    filename: "[name].js"
+    filename: "[name].js",
+    publicPath: "/dist"
   },
 
   resolve: {
@@ -22,7 +23,7 @@ module.exports = {
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].css'
+      filename: "[name].css"
     })
   ],
 
@@ -60,6 +61,12 @@ module.exports = {
 
   watchOptions: {
     poll: 1000
+  },
+
+  devServer: {
+    host: "0.0.0.0",
+    port: 3000,
+    disableHostCheck: true
   }
 };
 
