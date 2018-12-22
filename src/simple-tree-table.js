@@ -12,7 +12,8 @@ const DEFAULTS = {
   onClose: null,
   storeState: false,
   storeKey: NAMESPACE,
-  storeType: 'session'
+  storeType: 'session',
+  iconHTML: '<span class="tree-icon" />'
 };
 
 export default class SimpleTreeTable {
@@ -50,13 +51,15 @@ export default class SimpleTreeTable {
       }
 
       let id = $node.data('node-id');
-      let depth = this.depth($node, 0);
+      let depth = this.depth($node);
       let margin = this.options.margin * (depth - 1);
       let hasChildren = this.findChildren($node).length !== 0;
 
-      let $icon = $('<span class="tree-icon" />').css('margin-left', `${margin}px`);
-      if (hasChildren) {
-        $icon.addClass('tree-opened')
+      let $icon = $(this.options.iconHTML).css('margin-left', `${margin}px`);
+      if (!hasChildren) {
+        $icon.addClass('tree-empty');
+      } else {
+        $icon.addClass('tree-opened');
       }
       $node.children(':first').prepend($icon);
     });
@@ -106,7 +109,7 @@ export default class SimpleTreeTable {
     return this.$table.find('tr[data-node-id]');
   }
 
-  depth($node, depth) {
+  depth($node, depth = 0) {
     depth += 1;
     let pid = $node.data('node-pid');
     let $parent = this.findByID(pid);
@@ -128,7 +131,7 @@ export default class SimpleTreeTable {
 
   show($node) {
     let $icon = $node.find('.tree-icon');
-    if ($icon.hasClass('tree-closed')) {
+    if (!$icon.hasClass('tree-empty')) {
       $icon.removeClass('tree-closed').addClass('tree-opened');
       this.showDescs($node);
     }
@@ -157,7 +160,7 @@ export default class SimpleTreeTable {
 
   hide($node) {
     let $icon = $node.find('.tree-icon');
-    if ($icon.hasClass('tree-opened')) {
+    if (!$icon.hasClass('tree-empty')) {
       $icon.removeClass('tree-opened').addClass('tree-closed');
       this.hideDescs($node);
     }
@@ -190,19 +193,12 @@ export default class SimpleTreeTable {
     return this.$table.find(`tr[data-node-id="${id}"]`);
   }
 
-  findChildrenByID(id) {
-    let $node = this.findByID(id);
-    return this.findChildren($node);
-  }
-
   openByID(id) {
-    let $node = this.findByID(id);
-    this.open($node);
+    this.open(this.findByID(id));
   }
 
   closeByID(id) {
-    let $node = this.findByID(id);
-    this.close($node);
+    this.close(this.findByID(id));
   }
 
   loadState() {
