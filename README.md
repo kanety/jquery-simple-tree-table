@@ -43,11 +43,11 @@ Then run:
 $('table').simpleTreeTable();
 ```
 
-Collapse tree initially:
+Specify opened nodes:
 
 ```javascript
 $('table').simpleTreeTable({
-  collapsed: true
+  opened: [1]
 });
 ```
 
@@ -60,16 +60,16 @@ $('table').simpleTreeTable({
 });
 ```
 
-Run Callbacks when tree node is opened or closed:
+Run Callbacks when a node is opened or closed:
 
 ```javascript
 $('table').simpleTreeTable({
-  onOpen: function($node) {},
-  onClose: function($node) {}
+}).on('open', function(e, $node) {
+}).on('close', function(e, $node) {
 });
 ```
 
-Store node state in sessionStorage or localStorage:
+Store node states in sessionStorage or localStorage:
 
 ```javascript
 $('table').simpleTreeTable({

@@ -1,9 +1,9 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="../dist/jquery-simple-tree-table.js"></script>
-  <link rel="stylesheet" href="../dist/jquery-simple-tree-table.css"></script>
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="dist/jquery-simple-tree-table.js"></script>
+  <link rel="stylesheet" href="dist/jquery-simple-tree-table.css"></script>
 </head>
 <body>
   <h1>Basic Table</h1>
@@ -59,8 +59,8 @@
   });
   </script>
 
-  <h1>Collapsed table</h1>
-  <table id="collapsed" border="1">
+  <h1>Specify opened nodes</h1>
+  <table id="opened" border="1">
     <tr data-node-id="1">
       <td>1</td>
       <td>text of 1</td>
@@ -70,13 +70,29 @@
       <td>text of 1.1</td>
     </tr>
     <tr data-node-id="1.1.1" data-node-pid="1.1">
-      <td>1.1</td>
+      <td>1.1.1</td>
       <td>text of 1.1.1</td>
+    </tr>
+    <tr data-node-id="1.1.1.1" data-node-pid="1.1.1">
+      <td>1.1.1.1</td>
+      <td>text of 1.1.1.1</td>
+    </tr>
+    <tr data-node-id="1.2" data-node-pid="1">
+      <td>1.2</td>
+      <td>text of 1.2</td>
+    </tr>
+    <tr data-node-id="1.2.1" data-node-pid="1.2">
+      <td>1.2.1</td>
+      <td>text of 1.2.1</td>
+    </tr>
+    <tr data-node-id="1.2.1.1" data-node-pid="1.2.1">
+      <td>1.2.1.1</td>
+      <td>text of 1.2.1.1</td>
     </tr>
   </table>
   <script>
-  $('#collapsed').simpleTreeTable({
-    collapsed: true
+  $('#opened').simpleTreeTable({
+    opened: [1, 1.1]
   });
   </script>
 
@@ -91,19 +107,20 @@
       <td>text of 1.1</td>
     </tr>
     <tr data-node-id="1.1.1" data-node-pid="1.1">
-      <td>1.1</td>
+      <td>1.1.1</td>
       <td>text of 1.1.1</td>
+    </tr>
+    <tr data-node-id="1.2" data-node-pid="1">
+      <td>1.2</td>
+      <td>text of 1.2</td>
     </tr>
   </table>
   <p id="message"> </p>
   <script>
-  $('#callback').simpleTreeTable({
-    onOpen: function($node) {
-      $('#message').append("opened " + $node.data('node-id') + " ");
-    },
-    onClose: function($node) {
-      $('#message').append("closed " + $node.data('node-id') + " ");
-    }
+  $('#callback').simpleTreeTable().on('open', function(e, $node) {
+    $('#message').append("opened " + $node.data('node-id') + " ");
+  }).on('close', function(e, $node) {
+    $('#message').append("closed " + $node.data('node-id') + " ");
   });
   </script>
 </body>

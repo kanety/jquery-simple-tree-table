@@ -17,7 +17,7 @@ module.exports = function(config) {
     files: [
       'node_modules/jquery/dist/jquery.min.js',
       'dist/*.js',
-      'test/**/*.html',
+      'index.html',
       'test/**/*spec.js'
     ],
 
@@ -31,7 +31,7 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
         'src/*.js' : ['coverage'],
-        'test/**/*.html': ['html2js']
+        'index.html': ['html2js']
     },
 
 
@@ -66,7 +66,7 @@ module.exports = function(config) {
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: (function() {
       if (process.platform === "win32") {
-        return ['IE', 'Chrome', 'Firefox'];
+        return ['Chrome', 'Firefox', 'IE', 'Edge'];
       } else {
         return ['ChromeHeadless', 'FirefoxHeadless'];
       }

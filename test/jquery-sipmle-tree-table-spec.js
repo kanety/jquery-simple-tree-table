@@ -1,6 +1,6 @@
 describe('jquery-simple-tree-table', function() {
   beforeEach(function() {
-    document.body.innerHTML = __html__['test/index.html'];
+    document.body.innerHTML = __html__['index.html'];
   });
 
   it('expands or collapses tree', function() {
@@ -18,15 +18,6 @@ describe('jquery-simple-tree-table', function() {
     expect($table.find('tr:hidden').length).toEqual(0);
   });
 
-  it('collapsed tree', function() {
-    var $table = $('#collapsed');
-    $table.simpleTreeTable({
-      collapsed: true
-    });
-
-    expect($table.find('tr:visible').length).toEqual(1);
-  });
-
   it('opens or closes nodes', function() {
     var $table = $('#basic');
     $table.simpleTreeTable();
@@ -40,16 +31,25 @@ describe('jquery-simple-tree-table', function() {
     expect($table.find('tr[data-node-id="1.1.2"]').is(':visible')).toEqual(true);
   });
 
+  it('opens specified nodes by default', function() {
+    var $table = $('#opened');
+    $table.simpleTreeTable({
+      opened: [1, 1.1]
+    });
+
+    expect($table.find('tr[data-node-id="1"]').is(':visible')).toEqual(true);
+    expect($table.find('tr[data-node-id="1.1"]').is(':visible')).toEqual(true);
+    expect($table.find('tr[data-node-id="1.1.1"]').is(':visible')).toEqual(true);
+    expect($table.find('tr[data-node-id="1.2.1"]').is(':visible')).toEqual(false);
+  });
+
   it('has callbacks', function() {
     var $table = $('#callback');
     var $message = $('#message');
-    $table.simpleTreeTable({
-      onOpen: function($row) {
-        $message.append("opened " + $row.data('node-id') + " ");
-      },
-      onClose: function($row) {
-        $message.append("closed " + $row.data('node-id') + " ");
-      }
+    $table.simpleTreeTable().on('open', function(e, $node) {
+      $message.append("opened " + $node.data('node-id') + " ");
+    }).on('close', function(e, $node) {
+      $message.append("closed " + $node.data('node-id') + " ");
     });
 
     $table.find('tr[data-node-id="1.1"] .tree-icon').click().click();
