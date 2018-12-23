@@ -8,9 +8,7 @@ export default class Store {
   }
 
   save() {
-    let ids = this.tree.nodes().filter((i, node) => {
-      return $(node).find('.tree-closed').length != 0;
-    }).map((i, node) => {
+    let ids = this.tree.nodes().filter('.tree-closed').map((i, node) => {
       return $(node).data('node-id');
     }).get();
 
@@ -23,10 +21,18 @@ export default class Store {
       return;
     }
 
-    this.tree.expand();
-    ids.forEach((id) => {
-      this.tree.closeByID(id);
+    this.tree.nodes().each((i, node) => {
+      this.tree.show($(node));
     });
+    this.tree.nodes().filter((i, node) => {
+      return ids.indexOf($(node).data('node-id')) != -1;
+    }).each((i, node) => {
+      this.tree.hide($(node));
+    });
+  }
+
+  exist() {
+    return this.storage.getItem(this.key) === null;
   }
 
   static storage(type) {
