@@ -137,7 +137,7 @@ export default class SimpleTreeTable {
     this.show($node);
     this.saveState();
 
-    $node.trigger('open', [$node]);
+    $node.trigger('node:open', [$node]);
   }
 
   show($node) {
@@ -162,7 +162,7 @@ export default class SimpleTreeTable {
     this.hide($node);
     this.saveState();
 
-    $node.trigger('close', [$node]);
+    $node.trigger('node:close', [$node]);
   }
 
   hide($node) {

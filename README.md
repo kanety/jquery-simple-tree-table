@@ -64,8 +64,8 @@ Run Callbacks when a node is opened or closed:
 
 ```javascript
 $('table').simpleTreeTable({
-}).on('open', function(e, $node) {
-}).on('close', function(e, $node) {
+}).on('node:open', function(e, $node) {
+}).on('node:close', function(e, $node) {
 });
 ```
 
