@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 import { NAMESPACE } from './consts';
 import Store from './store';
 

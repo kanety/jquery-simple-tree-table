@@ -20,6 +20,10 @@ module.exports = {
     })
   ],
 
+  externals: {
+    jquery: "jQuery"
+  },
+
   optimization: {
     minimizer: [
       new UglifyJsPlugin({

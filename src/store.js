@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 export default class Store {
   constructor(tree, options = {}) {
     this.tree = tree;
