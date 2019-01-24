@@ -1,5 +1,3 @@
-'use strict';
-
 import './jquery-simple-tree-table.scss';
 import SimpleTreeTable from './simple-tree-table';
 import { NAMESPACE } from './consts';
