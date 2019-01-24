@@ -11,6 +11,7 @@ const DEFAULTS = {
   storeState: false,
   storeKey: NAMESPACE,
   storeType: 'session',
+  iconPosition: ':first',
   iconTemplate: '<span />'
 };
 
@@ -43,13 +44,13 @@ export default class SimpleTreeTable {
     });
 
     this.nodes().filter((i, node) => {
-      return $(node).children(':first').find('.tree-icon').length == 0;
+      return $(node).children(this.options.iconPosition).find('.tree-icon').length == 0;
     }).each((i, node) => {
       let $node = $(node);
       let depth = this.depth($node);
       let margin = this.options.margin * (depth - 1);
       let $icon = $(this.options.iconTemplate).addClass('tree-icon').css('margin-left', `${margin}px`);
-      $node.children(':first').prepend($icon);
+      $node.children(this.options.iconPosition).prepend($icon);
     });
 
     this.nodes().not('.tree-empty, .tree-opened, .tree-closed').each((i, node) => {
