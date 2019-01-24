@@ -56,4 +56,13 @@ describe('jquery-simple-tree-table', function() {
     expect($message.html()).toContain("opened 1.1");
     expect($message.html()).toContain("closed 1.1");
   });
+
+  it('has icon position', function() {
+    var $table = $('#icon_pos');
+    $table.simpleTreeTable({
+      iconPosition: ':last'
+    });
+    expect($table.find('tr > td:first > .tree-icon').length).toEqual(0);
+    expect($table.find('tr > td:last > .tree-icon').length).toEqual(1);
+  });
 });

@@ -1,4 +1,4 @@
-'use strict';
+import $ from 'jquery';
 
 export default class Store {
   constructor(tree, options = {}) {

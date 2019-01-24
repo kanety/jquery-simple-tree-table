@@ -123,5 +123,26 @@
     $('#message').append("closed " + $node.data('node-id') + " ");
   });
   </script>
+
+  <h1>Change icon position</h1>
+  <table id="icon_pos" border="1">
+    <tr data-node-id="1">
+      <td>1</td>
+      <td>text of 1</td>
+    </tr>
+    <tr data-node-id="1.1" data-node-pid="1">
+      <td>1.1</td>
+      <td>text of 1.1</td>
+    </tr>
+    <tr data-node-id="1.1.1" data-node-pid="1.1">
+      <td>1.1.1</td>
+      <td>text of 1.1.1</td>
+    </tr>
+  </table>
+  <script>
+  $('#icon_pos').simpleTreeTable({
+    iconPosition: ':last'
+  });
+  </script>
 </body>
 </html>

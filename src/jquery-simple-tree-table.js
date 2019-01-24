@@ -1,4 +1,4 @@
-'use strict';
+import $ from 'jquery';
 
 import './jquery-simple-tree-table.scss';
 import SimpleTreeTable from './simple-tree-table';
