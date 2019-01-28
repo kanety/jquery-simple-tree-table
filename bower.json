@@ -1,5 +1,5 @@
 {
   "name": "@kanety/jquery-simple-tree-table",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "dist/jquery-simple-tree-table.js"
 }

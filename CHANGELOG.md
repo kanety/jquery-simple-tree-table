@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.0
+
+* Add icon position option.
+
 ## 0.2.0
 
 * Simplify icon class.
