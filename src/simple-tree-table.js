@@ -40,7 +40,11 @@ export default class SimpleTreeTable {
   build() {
     this.nodes().not('[data-node-depth]').each((i, node) => {
       let $node = $(node);
-      $node.data('node-depth', this.depth($node));
+      let depth = this.depth($node);
+      $node.data('node-depth', depth);
+      if (depth == 1) {
+        $node.addClass('tree-root');
+      }
     });
 
     this.nodes().filter((i, node) => {
