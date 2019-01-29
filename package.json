@@ -1,7 +1,7 @@
 {
   "name": "@kanety/jquery-simple-tree-table",
   "description": "A jquery plugin that attaches tree-like behaviour to table",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Yoshikazu Kaneta <kaneta@sitebridge.co.jp>",
   "repository": {
     "type": "git",

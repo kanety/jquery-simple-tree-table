@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.1
+
+* Add class name for root node.
+
 ## 0.3.0
 
 * Add icon position option.
