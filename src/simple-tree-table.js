@@ -28,13 +28,13 @@ export default class SimpleTreeTable {
     }
 
     this.init();
+    this.loadState();
   }
 
   init() {
     this.$table.addClass(NAMESPACE);
     this.build();
     this.bind();
-    this.loadState();
   }
 
   build() {
@@ -82,15 +82,15 @@ export default class SimpleTreeTable {
   }
 
   bind() {
-    this.$expander.on(`click.${NAMESPACE}`, (e) => {
+    this.$expander.off(`click.${NAMESPACE}`).on(`click.${NAMESPACE}`, (e) => {
       this.expand();
     });
 
-    this.$collapser.on(`click.${NAMESPACE}`, (e) => {
+    this.$collapser.off(`click.${NAMESPACE}`).on(`click.${NAMESPACE}`, (e) => {
       this.collapse();
     });
 
-    this.$table.on(`click.${NAMESPACE}`, 'tr .tree-icon', (e) => {
+    this.$table.off(`click.${NAMESPACE}`).on(`click.${NAMESPACE}`, 'tr .tree-icon', (e) => {
       let $node = $(e.currentTarget).closest('tr');
       if ($node.hasClass('tree-opened')) {
         this.close($node);
