@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# 0.3.2
+
+* Unbind existing events before bind.
+
 ## 0.3.1
 
 * Add class name for root node.
