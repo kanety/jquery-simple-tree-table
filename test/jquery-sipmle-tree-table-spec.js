@@ -60,9 +60,9 @@ describe('jquery-simple-tree-table', function() {
   it('has icon position', function() {
     var $table = $('#icon_pos');
     $table.simpleTreeTable({
-      iconPosition: ':last'
+      iconPosition: 'td:last > span'
     });
-    expect($table.find('tr > td:first > .tree-icon').length).toEqual(0);
-    expect($table.find('tr > td:last > .tree-icon').length).toEqual(1);
+    expect($table.find('tr > td:first > span > .tree-icon').length).toEqual(0);
+    expect($table.find('tr > td:last > span > .tree-icon').length).toEqual(1);
   });
 });
