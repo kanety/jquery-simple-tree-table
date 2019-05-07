@@ -1,6 +1,10 @@
 # CHANGELOG
 
-# 0.3.2
+## 0.3.3
+
+* Allow icon in the descendant element.
+
+## 0.3.2
 
 * Unbind existing events before bind.
 
