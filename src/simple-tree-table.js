@@ -34,6 +34,7 @@ export default class SimpleTreeTable {
   init() {
     this.$table.addClass(NAMESPACE);
     this.build();
+    this.unbind();
     this.bind();
   }
 
@@ -82,15 +83,15 @@ export default class SimpleTreeTable {
   }
 
   bind() {
-    this.$expander.off(`click.${NAMESPACE}`).on(`click.${NAMESPACE}`, (e) => {
+    this.$expander.on(`click.${NAMESPACE}`, (e) => {
       this.expand();
     });
 
-    this.$collapser.off(`click.${NAMESPACE}`).on(`click.${NAMESPACE}`, (e) => {
+    this.$collapser.on(`click.${NAMESPACE}`, (e) => {
       this.collapse();
     });
 
-    this.$table.off(`click.${NAMESPACE}`).on(`click.${NAMESPACE}`, 'tr .tree-icon', (e) => {
+    this.$table.on(`click.${NAMESPACE}`, 'tr .tree-icon', (e) => {
       let $node = $(e.currentTarget).closest('tr');
       if ($node.hasClass('tree-opened')) {
         this.close($node);
