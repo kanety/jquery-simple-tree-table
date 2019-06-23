@@ -40,6 +40,14 @@ export default class SimpleTreeTable {
     this.bind();
   }
 
+  destroy() {
+    this.$table.removeClass(NAMESPACE);
+    this.$table.find('.tree-icon').remove();
+    this.nodes().removeClass('tree-empty tree-opened tree-closed');
+
+    this.unbind();
+  }
+
   build() {
     this.nodes().not('[data-node-depth]').each((i, node) => {
       let $node = $(node);
@@ -51,12 +59,12 @@ export default class SimpleTreeTable {
     });
 
     this.nodes().filter((i, node) => {
-      return $(node).find(this.options.iconPosition).find('.tree-icon').length == 0;
+      return $(node).find(this.options.iconPosition).find('.tree-handler').length == 0;
     }).each((i, node) => {
       let $node = $(node);
       let depth = this.depth($node);
       let margin = this.options.margin * (depth - 1);
-      let $icon = $(this.options.iconTemplate).addClass('tree-icon').css('margin-left', `${margin}px`);
+      let $icon = $(this.options.iconTemplate).addClass('tree-handler tree-icon').css('margin-left', `${margin}px`);
       $node.find(this.options.iconPosition).prepend($icon);
     });
 
@@ -93,7 +101,7 @@ export default class SimpleTreeTable {
       this.collapse();
     });
 
-    this.$table.on(`click.${NAMESPACE}`, 'tr .tree-icon', (e) => {
+    this.$table.on(`click.${NAMESPACE}`, 'tr .tree-handler', (e) => {
       let $node = $(e.currentTarget).closest('tr');
       if ($node.hasClass('tree-opened')) {
         this.close($node);
@@ -106,7 +114,7 @@ export default class SimpleTreeTable {
   unbind() {
     this.$expander.off(`.${NAMESPACE}`);
     this.$collapser.off(`.${NAMESPACE}`);
-    this.$table.off(`.${NAMESPACE}`);
+    this.$table.off(`.${NAMESPACE} node:open node:close`);
   }
 
   expand() {
