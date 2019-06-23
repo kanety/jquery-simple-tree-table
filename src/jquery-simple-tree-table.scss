@@ -1,20 +1,17 @@
 table.simple-tree-table {
   .tree-icon {
     display: inline-block;
-    width: 12px;
-    margin: 5px;
-    padding: 0 5px;
-  }
-  tr.tree-opened .tree-icon,
-  tr.tree-closed .tree-icon, {
+    width: 1.5em;
+    line-height: 1.5em;
+    margin: 0.1em;
     background-color: #eee;
     text-align: center;
     cursor: pointer;
   }
   tr.tree-opened .tree-icon:after {
-    content: '-'
+    content: '-';
   }
   tr.tree-closed .tree-icon:after {
-    content: '+'
+    content: '+';
   }
 }
