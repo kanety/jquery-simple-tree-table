@@ -1,14 +1,17 @@
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
   <script src="dist/jquery-simple-tree-table.js"></script>
-  <link rel="stylesheet" href="dist/jquery-simple-tree-table.css"></script>
+  <link rel="stylesheet" href="dist/jquery-simple-tree-table.css">
 </head>
 <body>
   <h1>Basic Table</h1>
   <button type="button" id="expander">expand</button>
   <button type="button" id="collapser">collapse</button>
+  <button type="button" id="open1">open 1</button>
+  <button type="button" id="close1">close 1</button>
   <table id="basic" border="1">
     <tr data-node-id="1">
       <td>1</td>
@@ -56,6 +59,12 @@
     expander: $('#expander'),
     collapser: $('#collapser'),
     storeState: true
+  });
+  $('#open1').on('click', function() {
+    $('#basic').data('simple-tree-table').openByID("1");
+  });
+  $('#close1').on('click', function() {
+    $('#basic').data('simple-tree-table').closeByID("1");
   });
   </script>
 

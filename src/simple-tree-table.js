@@ -197,10 +197,10 @@ export default class SimpleTreeTable {
   }
 
   findDescendants($node, descendants = []) {
-    let children = findChildren($node)
+    let children = this.findChildren($node)
     descendants.push(children);
     children.each((i, child) => {
-      findDescendants($(child), descs);
+      this.findDescendants($(child), descendants);
     })
     return descendants;
   }
@@ -230,6 +230,6 @@ export default class SimpleTreeTable {
   }
 
   static setDefaults(options) {
-    $.extend(DEFAULTS, options);
+    return $.extend(DEFAULTS, options);
   }
 }
