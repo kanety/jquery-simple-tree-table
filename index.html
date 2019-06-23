@@ -58,7 +58,8 @@
   $('#basic').simpleTreeTable({
     expander: $('#expander'),
     collapser: $('#collapser'),
-    storeState: true
+    store: 'session',
+    storeKey: 'simple-tree-table-basic'
   });
   $('#open1').on('click', function() {
     $('#basic').data('simple-tree-table').openByID("1");

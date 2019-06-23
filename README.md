@@ -43,6 +43,8 @@ Then run:
 $('table').simpleTreeTable();
 ```
 
+### Options
+
 Specify opened nodes:
 
 ```javascript
@@ -60,22 +62,26 @@ $('table').simpleTreeTable({
 });
 ```
 
-Run Callbacks when a node is opened or closed:
-
-```javascript
-$('table').simpleTreeTable({
-}).on('node:open', function(e, $node) {
-}).on('node:close', function(e, $node) {
-});
-```
-
 Store node states in sessionStorage or localStorage:
 
 ```javascript
 $('table').simpleTreeTable({
-  storeState: true,
+  store: 'session', // or 'local'
   storeKey: 'KEY'
-  storeType: 'session' // or 'local'
+});
+```
+
+### Callbacks
+
+Run Callbacks when a node is opened or closed:
+
+```javascript
+$('table').simpleTreeTable({
+  ...
+}).on('node:open', function(e, $node) {
+  ...
+}).on('node:close', function(e, $node) {
+  ...
 });
 ```
 

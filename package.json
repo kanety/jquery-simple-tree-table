@@ -23,6 +23,7 @@
     "test": "karma start"
   },
   "dependencies": {
+    "@kanety/js-store": "^0.1.2",
     "jquery": "^3.3.1"
   },
   "devDependencies": {
