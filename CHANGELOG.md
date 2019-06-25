@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.4.0
+
+* Separate store class and change store options.
+* Destroy existing instance on initialization.
+* Tweak css.
+
 ## 0.3.3
 
 * Allow icon in the descendant element.
