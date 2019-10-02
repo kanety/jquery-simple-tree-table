@@ -3,8 +3,15 @@ language: node_js
 node_js:
   - "8"
   - "10"
+  - "12"
 addons:
   chrome: stable
   firefox: latest
+env:
+  - JQUERY=3.3
+  - JQUERY=3.4
+install:
+  - npm install
+  - npm install jquery@$JQUERY
 script:
   - npm run test
