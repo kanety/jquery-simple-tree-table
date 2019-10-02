@@ -41,7 +41,7 @@ describe('jquery-simple-tree-table', () => {
     });
 
     it('finds descendants', () => {
-      let $node = $table.find('tr:first');
+      let $node = $table.find('tr').first();
       expect($table.data('simple-tree-table').findDescendants($node).length).toEqual(7);
     });
   });
@@ -84,8 +84,8 @@ describe('jquery-simple-tree-table', () => {
     });
 
     it('customizable icon position', () => {
-      expect($table.find('tr > td:first > span > .tree-icon').length).toEqual(0);
-      expect($table.find('tr > td:last > span > .tree-icon').length).toEqual(1);
+      expect($table.find('tr:first-child > td:first-child > span > .tree-icon').length).toEqual(0);
+      expect($table.find('tr:first-child > td:last-child > span > .tree-icon').length).toEqual(1);
     });
   });
 });

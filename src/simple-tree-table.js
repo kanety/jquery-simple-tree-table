@@ -8,7 +8,7 @@ const DEFAULTS = {
   collapser: null,
   opened: 'all',
   margin: 20,
-  iconPosition: ':first',
+  iconPosition: ':first-child',
   iconTemplate: '<span />',
   store: null,
   storeKey: null
