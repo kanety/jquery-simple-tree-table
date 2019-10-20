@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import Store from '@kanety/js-store';
 
+import './simple-tree-table.scss';
 import { NAMESPACE } from './consts';
 
 const DEFAULTS = {

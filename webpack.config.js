@@ -1,7 +1,4 @@
 const webpack = require("webpack");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = {
   mode: "production",
@@ -16,24 +13,8 @@ module.exports = {
     publicPath: "/dist"
   },
 
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: "[name].css"
-    })
-  ],
-
   externals: {
     jquery: "jQuery"
-  },
-
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true
-      }),
-      new OptimizeCSSAssetsPlugin({})
-    ]
   },
 
   module: {
@@ -54,7 +35,7 @@ module.exports = {
       }, {
         test: /\.scss$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          "style-loader",
           "css-loader",
           "sass-loader"
         ]
