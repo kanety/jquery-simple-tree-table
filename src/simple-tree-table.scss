@@ -1,5 +1,7 @@
-table.simple-tree-table {
-  .tree-icon {
+$NAMESPACE: simple-tree-table;
+
+.#{$NAMESPACE} {
+  &-icon {
     display: inline-block;
     width: 1.5em;
     line-height: 1.5em;
@@ -8,10 +10,10 @@ table.simple-tree-table {
     text-align: center;
     cursor: pointer;
   }
-  tr.tree-opened .tree-icon:after {
+  &-opened &-icon:after {
     content: '-';
   }
-  tr.tree-closed .tree-icon:after {
+  &-closed &-icon:after {
     content: '+';
   }
 }

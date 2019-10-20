@@ -42,9 +42,13 @@ export default class SimpleTreeTable {
   }
 
   destroy() {
-    this.$table.removeClass(NAMESPACE);
-    this.$table.find('.tree-icon').remove();
-    this.nodes().removeClass('tree-empty tree-opened tree-closed');
+    let detector = (i, className) => {
+      let reg = new RegExp(`${NAMESPACE}(-\\S+)?`, 'g');
+      return (className.match(reg) || []).join(' ');
+    }
+    this.$table.removeClass(detector);
+    this.nodes().removeClass(detector);
+    this.$table.find(`.${NAMESPACE}-icon`).remove();
 
     this.unbind();
   }
@@ -55,35 +59,35 @@ export default class SimpleTreeTable {
       let depth = this.depth($node);
       $node.data('node-depth', depth);
       if (depth == 1) {
-        $node.addClass('tree-root');
+        $node.addClass(`${NAMESPACE}-root`);
       }
     });
 
     this.nodes().filter((i, node) => {
-      return $(node).find(this.options.iconPosition).find('.tree-handler').length == 0;
+      return $(node).find(this.options.iconPosition).find(`.${NAMESPACE}-handler`).length == 0;
     }).each((i, node) => {
       let $node = $(node);
       let depth = this.depth($node);
       let margin = this.options.margin * (depth - 1);
-      let $icon = $(this.options.iconTemplate).addClass('tree-handler tree-icon').css('margin-left', `${margin}px`);
+      let $icon = $(this.options.iconTemplate).addClass(`${NAMESPACE}-handler ${NAMESPACE}-icon`).css('margin-left', `${margin}px`);
       $node.find(this.options.iconPosition).prepend($icon);
     });
 
-    this.nodes().not('.tree-empty, .tree-opened, .tree-closed').each((i, node) => {
+    this.nodes().not(`.${NAMESPACE}-empty, .${NAMESPACE}-opened, .${NAMESPACE}-closed`).each((i, node) => {
       let $node = $(node);
       if (!this.hasChildren($node)) {
-        $node.addClass('tree-empty');
+        $node.addClass(`${NAMESPACE}-empty`);
       } else if (this.opensDefault($node)) {
-        $node.addClass('tree-opened');
+        $node.addClass(`${NAMESPACE}-opened`);
       } else {
-        $node.addClass('tree-closed');
+        $node.addClass(`${NAMESPACE}-closed`);
       }
     });
 
-    this.nodes().filter('.tree-opened').each((i, node) => {
+    this.nodes().filter(`.${NAMESPACE}-opened`).each((i, node) => {
       this.show($(node));
     });
-    this.nodes().filter('.tree-closed').each((i, node) => {
+    this.nodes().filter(`.${NAMESPACE}-closed`).each((i, node) => {
       this.hide($(node));
     });
   }
@@ -102,9 +106,9 @@ export default class SimpleTreeTable {
       this.collapse();
     });
 
-    this.$table.on(`click.${NAMESPACE}`, 'tr .tree-handler', (e) => {
+    this.$table.on(`click.${NAMESPACE}`, `tr .${NAMESPACE}-handler`, (e) => {
       let $node = $(e.currentTarget).closest('tr');
-      if ($node.hasClass('tree-opened')) {
+      if ($node.hasClass(`${NAMESPACE}-opened`)) {
         this.close($node);
       } else {
         this.open($node);
@@ -158,8 +162,8 @@ export default class SimpleTreeTable {
   }
 
   show($node) {
-    if (!$node.hasClass('tree-empty')) {
-      $node.removeClass('tree-closed').addClass('tree-opened');
+    if (!$node.hasClass(`${NAMESPACE}-empty`)) {
+      $node.removeClass(`${NAMESPACE}-closed`).addClass(`${NAMESPACE}-opened`);
       this.showDescs($node);
     }
   }
@@ -169,7 +173,7 @@ export default class SimpleTreeTable {
     $children.each((i, child) => {
       let $child = $(child);
       $child.show();
-      if ($child.hasClass('tree-opened')) {
+      if ($child.hasClass(`${NAMESPACE}-opened`)) {
         this.showDescs($child);
       }
     });
@@ -183,8 +187,8 @@ export default class SimpleTreeTable {
   }
 
   hide($node) {
-    if (!$node.hasClass('tree-empty')) {
-      $node.removeClass('tree-opened').addClass('tree-closed');
+    if (!$node.hasClass(`${NAMESPACE}-empty`)) {
+      $node.removeClass(`${NAMESPACE}-opened`).addClass(`${NAMESPACE}-closed`);
       this.hideDescs($node);
     }
   }
@@ -247,7 +251,7 @@ export default class SimpleTreeTable {
   save() {
     if (!this.store) return;
 
-    let ids = this.nodes().filter('.tree-closed').map((i, node) => {
+    let ids = this.nodes().filter(`.${NAMESPACE}-closed`).map((i, node) => {
       return $(node).data('node-id');
     }).get();
 

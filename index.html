@@ -126,14 +126,12 @@
   </table>
   <p id="message"> </p>
   <script>
-  for (var i=0; i<2; i++) {
-    $('#callback').simpleTreeTable({
-    }).on('node:open', function(e, $node) {
-      $('#message').append("opened " + $node.data('node-id') + " ");
-    }).on('node:close', function(e, $node) {
-      $('#message').append("closed " + $node.data('node-id') + " ");
-    });
-  }
+   $('#callback').simpleTreeTable({
+   }).on('node:open', function(e, $node) {
+     $('#message').append("opened " + $node.data('node-id') + " ");
+   }).on('node:close', function(e, $node) {
+     $('#message').append("closed " + $node.data('node-id') + " ");
+   });
   </script>
 
   <h1>Change icon position</h1>
