@@ -46,17 +46,15 @@ module.exports = function(config) {
     webpack: (function() {
       var webpack = require('./webpack.config');
       webpack.mode = 'development';
+      webpack.devtool = 'inline-source-map';
       webpack.module.rules.push({
         test: /\.js$/,
         include: /src/,
         exclude: /node_modules/,
-        enforce: 'post',
         use: {
-          loader: 'istanbul-instrumenter-loader',
-          options: { esModules: true }
+          loader: 'coverage-istanbul-loader'
         }
       });
-      webpack.devtool = 'inline-source-map';
       return webpack;
     })(),
 
