@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.1
+
+* Fix default selector for `iconPosition`.
+
 ## 0.5.0
 
 * Fix css class name.

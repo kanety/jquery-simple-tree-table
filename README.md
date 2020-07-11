@@ -62,6 +62,14 @@ $('table').simpleTreeTable({
 });
 ```
 
+Customize icon position:
+
+```javascript
+$('table').simpleTreeTable({
+  iconPosition: 'td:last-child'
+});
+```
+
 Store node states in sessionStorage or localStorage:
 
 ```javascript
