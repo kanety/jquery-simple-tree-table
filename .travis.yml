@@ -4,12 +4,14 @@ node_js:
   - "8"
   - "10"
   - "12"
+  - "14"
 addons:
   chrome: stable
   firefox: latest
 env:
   - JQUERY=3.3
   - JQUERY=3.4
+  - JQUERY=3.5
 install:
   - npm install
   - npm install jquery@$JQUERY
