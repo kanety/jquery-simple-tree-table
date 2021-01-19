@@ -1,0 +1,26 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: windows-2019
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+        jquery: [3.3, 3.4, 3.5]
+
+    name: node ${{ matrix.node-version }}, jquery ${{ matrix.jquery }}
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install
+      run: |
+        npm install
+        npm install jquery@${{ matrix.jquery }}
+    - name: Run test
+      run: |
+        npm run test
